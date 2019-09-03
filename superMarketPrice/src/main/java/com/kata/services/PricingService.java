@@ -7,7 +7,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class PricingService {
+   
 
+    /**
+     * calculate  the price of the shop with applying the given discount;
+     * @param shop   the shop
+     * @param allDiscounts list of discounts to apply
+     * @return  the price of the shop
+     */
     public Double calculatePriceShop(final Shop shop, List<Discount> allDiscounts){
 
         List<Discount> discounts=allDiscounts.stream().filter(d -> d.getProduct().getReference().equals(shop.getProduct().getReference())).collect(Collectors.toList());
