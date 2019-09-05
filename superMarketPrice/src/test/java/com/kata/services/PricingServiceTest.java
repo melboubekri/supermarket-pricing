@@ -9,70 +9,69 @@ import static org.junit.Assert.assertEquals;
 
 public class PricingServiceTest {
 
-    private PricingService service=new PricingService();
+	private PricingService service = new PricingService();
 
-    @Test
-    public void testCalculatePriceShopWithDiscount(){
-        Shop shop=new Shop();
-        Product product=new Product();
-        product.setName("p1");
-        product.setReference("ref1");
-        product.setUnitType(ProductUnit.UNIT);
-        product.setPrice(new Price(1.5));
-        shop.setProduct(product);
-        shop.setQuantity(5.0);
+	@Test
+	public void testCalculatePriceShopWithDiscountWithUnit() {
+		Shop shop = new Shop();
+		Product product = new Product();
+		product.setName("p1");
+		product.setReference("ref1");
+		product.setPrice(new UnitPrice(1.5));
 
-        Discount discount=new Discount();
-        discount.setDicountQuantity(4.0);
-        discount.setDiscountPrice(new Price(5.0));
-        discount.setProduct(product);
+		shop.setProduct(product);
+		shop.setQuantity( new UnitQuantity(5.0));
 
-        Double total=service.calculatePriceShop(shop, Arrays.asList(discount));
-        assertEquals(new Double(6.5),total);
-    }
+		Discount discount = new Discount();
+		discount.setDicountQuantity(new UnitQuantity(4.0));
+		discount.setDiscountPrice(new Price(5.0));
+		discount.setProduct(product);
 
-    @Test
-    public void testCalculatePriceShopWithoutDiscount(){
-        Shop shop=new Shop();
-        Product product=new Product();
-        product.setName("p1");
-        product.setReference("ref1");
-        product.setPrice(new Price(1.5));
-        shop.setProduct(product);
-        shop.setQuantity(5.0);
+		Double total = service.calculatePriceShop(shop, Arrays.asList(discount));
+		assertEquals(new Double(6.5), total);
+	}
 
-        Product product2=new Product();
-        product2.setName("p2");
-        product2.setReference("ref2");
-        product2.setPrice(new Price(2.5));
-        product2.setUnitType(ProductUnit.UNIT);
+	@Test
+	public void testCalculatePriceShopWithoutDiscount() {
+		Shop shop = new Shop();
+		Product product1 = new Product();
+		product1.setName("p1");
+		product1.setReference("ref1");
+		product1.setPrice(new Price(1.5));
 
-        Discount discount=new Discount();
-        discount.setDicountQuantity(4.0);
-        discount.setDiscountPrice(new Price(5.0));
-        discount.setProduct(product2);
+		Product product2 = new Product();
+		product2.setName("p2");
+		product2.setReference("ref2");
+		product2.setPrice(new UnitPrice(2.5));
 
-        Double total=service.calculatePriceShop(shop, Arrays.asList(discount));
-        assertEquals(new Double(7.5),total);
-    }
+		shop.setProduct(product1);
+		shop.setQuantity(new UnitQuantity(5.0));
 
-    @Test
-    public void testCalculatePriceShopWithDiscountUsingWeight(){
-        Shop shop=new Shop();
-        Product product=new Product();
-        product.setName("p1");
-        product.setReference("ref1");
-        product.setUnitType(ProductUnit.WEIGHT);
-        product.setPrice(new WeightPrice(2.5, WeightUnit.POUND));
-        shop.setProduct(product);
-        shop.setQuantity(5.5);
+		Discount discount = new Discount();
+		discount.setDicountQuantity(new UnitQuantity(4.0));
+		discount.setDiscountPrice(new Price(5.0));
+		discount.setProduct(product2);
 
-        Discount discount=new Discount();
-        discount.setDicountQuantity(4.0);
-        discount.setDiscountPrice(new Price(5.0));
-        discount.setProduct(product);
+		Double total = service.calculatePriceShop(shop, Arrays.asList(discount));
+		assertEquals(new Double(7.5), total);
+	}
 
-        Double total=service.calculatePriceShop(shop, Arrays.asList(discount));
-        assertEquals(new Double(8.75),total);
-    }
+	@Test
+	public void testCalculatePriceShopWithDiscountUsingWeight() {
+		Shop shop = new Shop();
+		Product product = new Product();
+		product.setName("p1");
+		product.setReference("ref1");
+		product.setPrice(new WeightPrice(1.99, WeightUnit.POUND));
+		shop.setProduct(product);
+		shop.setQuantity(new WeightQuantity(48.0,WeightUnit.OUNCE));
+
+		Discount discount = new Discount();
+		discount.setDicountQuantity(new WeightQuantity(3.0,WeightUnit.POUND));
+		discount.setDiscountPrice(new WeightPrice(1.0,WeightUnit.POUND));
+		discount.setProduct(product);
+
+		Double total = service.calculatePriceShop(shop, Arrays.asList(discount));
+		assertEquals(new Double (1.0), total);
+	}
 }

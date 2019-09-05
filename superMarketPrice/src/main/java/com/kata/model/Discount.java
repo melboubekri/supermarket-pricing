@@ -4,9 +4,21 @@ public class Discount {
 
     private Product product;
     private Price discountPrice;
-    private Double dicountQuantity;
+    private Quantity dicountQuantity;
 
-    public Price getDiscountPrice() {
+    
+    public Discount(Product product, Price discountPrice, Quantity dicountQuantity) {
+		super();
+		this.product = product;
+		this.discountPrice = discountPrice;
+		this.dicountQuantity = dicountQuantity;
+	}
+
+	public Discount() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Price getDiscountPrice() {
         return discountPrice;
     }
 
@@ -14,11 +26,11 @@ public class Discount {
         this.discountPrice = discountPrice;
     }
 
-    public Double getDicountQuantity() {
+    public Quantity getDicountQuantity() {
         return dicountQuantity;
     }
 
-    public void setDicountQuantity(Double dicountQuantity) {
+    public void setDicountQuantity(Quantity dicountQuantity) {
         this.dicountQuantity = dicountQuantity;
     }
 

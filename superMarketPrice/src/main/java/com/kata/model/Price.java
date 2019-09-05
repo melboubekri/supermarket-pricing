@@ -2,17 +2,21 @@ package com.kata.model;
 
 public class Price {
 
-    private Double value;
+    private double value;
 
-    public Price(Double value) {
+    public Price(double value) {
         this.value = value;
     }
 
-    public Double getValue() {
+    public Price() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public double getValue() {
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(double value) {
         this.value = value;
     }
 }

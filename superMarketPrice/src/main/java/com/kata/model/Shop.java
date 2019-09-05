@@ -3,9 +3,20 @@ package com.kata.model;
 public class Shop {
 
     private Product product;
-    private Double quantity;
+    private Quantity quantity;
 
-    public Product getProduct() {
+    
+    public Shop(Product product, Quantity quantity) {
+		super();
+		this.product = product;
+		this.quantity = quantity;
+	}
+
+	public Shop() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Product getProduct() {
         return product;
     }
 
@@ -13,11 +24,11 @@ public class Shop {
         this.product = product;
     }
 
-    public Double getQuantity() {
+    public Quantity getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Double quantity) {
+    public void setQuantity(Quantity quantity) {
         this.quantity = quantity;
     }
 }

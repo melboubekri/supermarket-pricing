@@ -2,22 +2,22 @@ package com.kata.model;
 
 public class WeightPrice extends Price {
 
-    public WeightPrice(Double value) {
-        super(value);
-    }
+	private WeightUnit unit;
 
-    public WeightPrice(Double value, WeightUnit unit) {
-        super(value);
-        this.unit = unit;
-    }
+	public WeightPrice(double value) {
+		super(value);
+	}
 
-    private WeightUnit unit;
+	public WeightPrice(double value, WeightUnit unit) {
+		super(value);
+		this.unit = unit;
+	}
 
-    public WeightUnit getUnit() {
-        return unit;
-    }
+	public WeightUnit getUnit() {
+		return unit;
+	}
 
-    public void setUnit(WeightUnit unit) {
-        this.unit = unit;
-    }
+	public void setUnit(WeightUnit unit) {
+		this.unit = unit;
+	}
 }
